@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Algorithm2DArrays {
     /** Return true if target is found in the 2D array arr, false otherwise.
      *  For example, if arr is {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}}
@@ -84,4 +86,108 @@ public class Algorithm2DArrays {
          }
          return sum;
     }
+
+    /** Return the sum of all elements of arr that are in the one particular column
+     *
+     *  PRECONDITION:  0 <= col < arr[0].length (i.e. col is valid)
+     *
+     *  @param arr  2D array of ints
+     *  @param col  the column to add up
+     *  @return  the sum of all elements in column
+     */
+    public static int sumForColumn(int[][] arr, int col)
+    {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i][col];
+        }
+        return sum;
+    }
+
+    /** Creates a 2D array of ints of size n x m, where n is number of rows and
+     *  m is number of columns; the elements in the 2D array should be numbered 0
+     *  through n x m - 1, with the numbers filled top to bottom, left to right.
+     *  The method prints the 2D array "grid" of numbers, and also returns
+     *  the 2D array.
+     *
+     *  For example, for rows = 3 and cols = 4, this method should print
+     *  (and return):
+     *  0 1 2 3
+     *  4 5 6 7
+     *  8 9 10 11
+     *
+     *  Print each element with a single space in between.
+     *
+     *  @param rows  number of rows
+     *  @param cols  number of columns
+     *  @return  the same 2D array "number grid" that gets printed by the method
+     */
+    public static int[][] printNumberGrid(int rows, int cols)
+    {
+        int[][] numberGrid = new int[rows][cols];
+        int number = 0;
+        for (int row = 0; row < numberGrid.length; row++) {
+            for (int col = 0; col < numberGrid[row].length; col++) {
+                numberGrid[row][col] = number;
+                number++;
+                System.out.print(numberGrid[row][col] + " ");
+            }
+            System.out.println(" ");
+        }
+        return numberGrid;
+    }
+
+    /** Creates and returns a square 2D array of Strings of size n x n; the
+     *  elements in the 2D array alternate between "X" and "O" (letter),
+     *  starting with "X"
+     *
+     *  For example, if n = 5, this method should return the following 2D array
+     *  (with 5 rows and 5 columns):
+     *  X O X O X
+     *  O X O X O
+     *  X O X O X
+     *  O X O X O
+     *  X O X O X
+     *
+     *  @param n  number of rows and columns (creating a square 2D array of size n x n)
+     *  @return  a 2D array of Strings that alternate between "X" and "O"
+     */
+    public static String[][] gridOfXandO(int n)
+    {
+        String[][] grid = new String[n][n];
+        int x = 0;
+        for (int row = 0; row < grid.length; row++) {
+            for (int col = 0; col < grid[row].length; col++) {
+                if (x % 2 == 0) {
+                    grid[row][col] = "X";
+                } else {
+                    grid[row][col] = "O";
+                }
+                x++;
+            }
+        }
+        return grid;
+    }
+
+    /** Searches through the 2D array wordChart and finds all strings with
+     *  length len; these strings are added to an ArrayList and returned.
+     *  If no strings have that length, return an empty ArrayList
+     *
+     *  @param wordChart  2D array of Strings
+     *  @parram len  the length of strings to search for
+     *  @return  an ArrayList containing all strings in wordChart with length len
+     */
+    public static ArrayList<String> findStringsOfLength(String[][] wordChart, int len)
+    {
+        ArrayList<String> list = new ArrayList<String>();
+        for (int row = 0; row < wordChart.length; row++) {
+            for (int col = 0; col < wordChart[row].length; col++) {
+                if (wordChart[row][col].length() == len) {
+                    list.add(wordChart[row][col]);
+                }
+            }
+        }
+        return list;
+    }
+
 }
